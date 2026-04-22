@@ -1,66 +1,58 @@
-import Image from "next/image";
+"use client";
 import styles from "./page.module.css";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [account, setAccount] = useState(100);
+
+  useEffect(() => {
+    const savedAccount = localStorage.getItem("account");
+    if (savedAccount) {
+      setAccount(Number(savedAccount));
+    }
+  }, []);
+
+  function shareSize(risk, stopSize) {
+    return risk / stopSize;
+  }
+
+  function saveAccountToLocalstorage() {
+    localStorage.setItem("account", account);
+  }
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      <input
+        type="number"
+        onChange={(e) => setAccount(Number(e.target.value))}
+        value={account}
+      />
+
+      <p>Your risk is {account / 100}$ per trade</p>
+
+      <div className={styles.container}>
+        <div>calculate the share size for every stop size</div>
+
+        <div>
+          for 0.10$ stop: {shareSize(account / 100, 0.1).toFixed(0)} shares
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div>
+          for 0.20$ stop: {shareSize(account / 100, 0.2).toFixed(0)} shares
         </div>
-      </main>
+        <div>
+          for 0.30$ stop: {shareSize(account / 100, 0.3).toFixed(0)} shares
+        </div>
+        <div>
+          for 0.40$ stop: {shareSize(account / 100, 0.4).toFixed(0)} shares
+        </div>
+        <div>
+          for 0.50$ stop: {shareSize(account / 100, 0.5).toFixed(0)} shares
+        </div>
+      </div>
+
+      <button type="button" onClick={saveAccountToLocalstorage}>
+        Save Settings
+      </button>
     </div>
   );
 }
