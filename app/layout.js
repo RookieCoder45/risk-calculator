@@ -1,11 +1,15 @@
 
 import "./globals.css";
+import NavbarComponent from "./components/NavbarComponent";
 
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NavbarComponent />
+        {children}
+        </body>
     </html>
   );
 }
