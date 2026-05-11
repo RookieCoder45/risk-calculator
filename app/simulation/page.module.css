@@ -1,14 +1,51 @@
 .page {
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
-  background: linear-gradient(180deg, #f8fafc, #eef2f7);
-  color: #0f172a;
-  font-family: "Segoe UI", sans-serif;
-  padding: auto;
-  text-align: center;
+  position: relative;
+  height: 300vh;
+  position: relative;
+
 }
+
+
+
+
+.card {
+  border: 1px solid black;
+  width: 80vw;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+
+.second {
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation-timeline: scroll();
+}
+
+
+.animatedBox {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  margin: 10px;
+  position: absolute;
+  left: 200px;
+  animation: moveRight both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 100%;
+  
+}
+
+
+@keyframes moveRight {
+  from {
+    left: 200px;
+  }
+  to {
+    left: 1000px;
+  }
+}
+

@@ -1,27 +1,25 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
 
 
 export default function Simulation() {
+ 
 
-  // States used in simulation
-
-  const [account, setAccount] = useState();
-  const[riskPercent, setRiskPercent] = useState();
-  const[commission, setCommission] = useState();
-  const[riskRatio, setRiskRatio] = useState();
-  const[profitRatio, setProfitRatio] = useState();
-  const[winRate, setWinRate] = useState();
-
-
-
-
+ 
 
 
 
   return (
-    <div className={styles.page}>Simulation</div>
-  )
+    <div className={styles.page}>
+      <div className={`${styles.card} ${styles.first}`}>
+        first animated card
+      </div>
+      <div className={`${styles.card} ${styles.second}`}>
+        <div className={styles.animatedBox}></div>
+        <div className={styles.animatedBox}></div>
+        <div className={styles.animatedBox}></div>
+      </div>
+    </div>
+  );
 }
