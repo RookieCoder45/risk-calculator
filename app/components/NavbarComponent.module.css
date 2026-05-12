@@ -1,21 +1,27 @@
 .navbar {
-  border: none;
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   display: flex;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  font-size: 1.2rem;
-
-  a {
-    text-decoration: none;
-    color: #3b82f6; 
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3); 
-    }
-  }
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
+.navbar a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.navbar a:hover {
+  color: var(--accent-blue);
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}

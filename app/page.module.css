@@ -1,72 +1,357 @@
-.page {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Settings Card */
+.card:nth-child(1) {
+  grid-column: span 4;
+}
+
+/* Daily Risk Card */
+.card:nth-child(2) {
+  grid-column: span 8;
   display: flex;
   flex-direction: column;
-  width: 90vw;
-  margin: 10px auto;
-  border: none;
-  box-shadow: inset 0 -1px 10 rgba(0, 0, 0, 0.856);
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(0, 0, 0, 0));
+}
+
+/* Calculator Card */
+.card:nth-child(3) {
+  grid-column: span 12;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.inputGroup input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.radioGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.radioGroup button {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 0.6rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.radioGroup button.activeRadio {
+  background: var(--accent-blue);
+  color: white;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.commInputWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.commInputWrapper input {
+  flex: 2;
+}
+
+.commInputWrapper select {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem;
+  color: white;
+  cursor: pointer;
+}
+
+.saveButton {
+  width: 100%;
   padding: 1rem;
-  font-size: 1.2rem;
-  border-radius: 8px;
+  background: var(--accent-blue);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.saveButton:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Daily Risk Styling */
+.thresholdInputs {
+  display: flex;
   gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
 
-  & > :nth-child(3) {
-    display: flexbox;
+.thresholdInputs .inputGroup {
+  flex: 1;
+  margin-bottom: 0;
+}
 
-    label {
-      margin-right: 1rem;
-      
-      input {
-        box-shadow: none;
-      }
-    }
-  }
-  button {
-    margin-top: 1rem auto;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: none;
-    box-shadow: inset 0 -1px 10 rgba(0, 0, 0, 0.856);
-    background-color: #3b82f6;
-    color: white;
-    cursor: pointer;
-    
-  }
+.riskDisplay {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
 
-  input {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: none;
-    box-shadow: inset 0 -1px 10 rgba(0, 0, 0, 0.856);
-    text-align: center;
-    font: 600 1.2rem "Segoe UI", sans-serif;
-  }
+.riskValue {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent-emerald);
+  line-height: 1;
+}
 
-  & > :nth-child(7) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    text-align: center;
+.riskLabel {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
-    div {
-      display: flex;
-      align-items: left;
-    
-      gap: 1rem;
+.riskBar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
 
-      span {
-        border: none;
-        box-shadow: inset 0 -1px 10 rgba(0, 0, 0, 0.856);
-        padding: 0.2rem .6rem;
-        border-radius: 8px;
-        width: 100px;
-        text-align: left;
-      }
+.riskProgress {
+  height: 100%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 15px var(--accent-emerald);
+  transition: width 1s ease-in-out;
+}
 
-    }
+.resetButton {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-   
+.resetButton:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* Calculator Table Styling */
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stat label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.customStopWrapper {
+  width: 200px;
+}
+
+.customStopWrapper label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.customStopWrapper input {
+  width: 100%;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid var(--accent-blue);
+  border-radius: 12px;
+  padding: 0.75rem;
+  color: white;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.table td {
+  padding: 1.25rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table tr td:first-child {
+  border-radius: 12px 0 0 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.table tr td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.shares {
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.comm {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.target {
+  color: var(--accent-emerald);
+  font-weight: 600;
+}
+
+.customRow td {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-top: 1px solid var(--accent-blue);
+  border-bottom: 1px solid var(--accent-blue);
+}
+
+@media (max-width: 1024px) {
+  .card:nth-child(1),
+  .card:nth-child(2) {
+    grid-column: span 12;
   }
 }
 
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .summaryHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .customStopWrapper {
+    width: 100%;
+  }
+}
